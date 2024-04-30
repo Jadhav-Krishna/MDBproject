@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const user = require("./models/user");
 const userModel = require('./models/user');
+const { log } = require('console');
 
 
 app.set("view engine","ejs");
@@ -15,13 +16,31 @@ app.get("/",(req,res) => {
     res.render("index")
 })
 
-app.post("/read",(req,res) => {
-    res.render("read")
+app.get("/read",(req,res) => {
+    userModel.find()
+    .then((users)=>{ res.render("read",{users})
+})      
 })
 
-app.get("/create",(req,res) => {
-    res.send("hello chutiye , kya create karna chahta hai !!!")
+app.post("/create",(req,res) => {
+    let {name,email,age,img} = req.body;
+    userModel.create({
+        name,
+        email,
+        age,
+        img,
+    })
+    .then( (data) =>{
+        res.redirect("/read") 
+    })
 })
+
+// app.get("/delete/:id",(req,res)=>{
+//     userModel.findOneAndDelete({_id:req.params.id})
+//     .then(()=>{
+//         res.redirect('/read')
+//     })
+// })
 
 app.listen(3000 , (ex) => {
     console.log("Server is running ....")

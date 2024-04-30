@@ -14,8 +14,8 @@
     <div id="main" class="h-screen w-full bg-zinc-900 flex  items-center justify-center">
         <div id="card" class="flex bg-zinc-700 px-5 flex-col gap-5 py-10 rounded-xl">
             <h1 class="text-3xl text-white">Create Profile</h1>
-            <a class="inline-block text-blue-500" href="#">View Profile <i class="ri-arrow-right-s-line"></i></a>
-            <form action="/read" method="post" class="flex w-72 h-92 flex-col gap-5">
+            <a class="inline-block text-blue-500" href="/read">View Profile <i class="ri-arrow-right-s-line"></i></a>
+            <form action="/create" method="post" class="flex w-72 h-92 flex-col gap-5">
                 <input class="bg-zinc-800 p-3 rounded-lg text-slate-300 outline-none" type="text" name="name" placeholder="Name">
                 <input class="bg-zinc-800 p-3 rounded-lg text-slate-300 outline-none appearance-none" type="number" min="18" max="85" name="age" placeholder="age">
                 <input class="bg-zinc-800 p-3 text-slate-300 rounded-lg outline-none" type="text" name="img" placeholder="Image URL">

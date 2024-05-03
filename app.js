@@ -43,14 +43,35 @@ app.post("/create",(req,res) => {
     })
 })
 
-app.get("/delete/:_id",(req,res)=>{
-    userModel.findOneAndDelete({_id:req.params._id})
+app.get("/delete/:id",(req,res)=>{
+    userModel.findOneAndDelete({_id:req.params.id})
     .then((ress)=>{
         res.redirect('/read')
     })
     .catch(err => {
         res.send(err.message);
     })
+})
+
+app.get("/edit/:id", async(req,res) => {
+    try{
+       let user = await userModel.findOne({_id:req.params.id})
+       res.render('edit',{user})
+    }
+    catch(err){
+        res.send(err.message)
+    }
+})
+
+app.post('/update/:userid',async (req,res) => {
+    try{
+        let {name,age,img,email} = req.body;
+        let userdets = await userModel.findOneAndUpdate({_id:req.params.userid} , {name,age,img,email} , {new:true});
+        res.redirect("/read");
+    }
+    catch(err){
+        res.send(err.message)
+    }
 })
 
 app.listen(3000 , (ex) => {

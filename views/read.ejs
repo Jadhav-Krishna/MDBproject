@@ -17,14 +17,14 @@
         <div id="box" class="w-full h-full flex bg-zinc-900 relative flex-wrap gap-5">
             <% if(users.length > 0){ %> 
             <% users.forEach((e)=>{ %>
-                <div id="card" class="h-80 w-72 rounded-xl bg-zinc-800 p-5">
-                    <div id="image" class="h-48 w-full bg-blue-500 rounded-lg overflow-hidden">
-                        <img class="object-cover" src="<%= e.img %>" alt="load nahi hora bhai...">
+                <div id="card" class="h-96 w-72 rounded-xl bg-zinc-800 p-5">
+                    <div id="image" class="h-64 w-full bg-zinc-800 rounded-lg overflow-hidden">
+                        <img class="object-cover w-full " src="<%= e.img %>" alt="load nahi hora bhai...">
                     </div>
                     <h1 class="text-white text-2xl mt-4"><%= e.name %></h1>
                     <h3 class="text-slate-500"><%= e.email %></h3>
                     <div id="wrapper" class="flex items-center justify-between">
-                        <a class="text-slate-300" href="">Edit</a>
+                        <a class="text-slate-300" href="/edit/<%= e._id %>">Edit</a>
                         <a class="text-red-500" href="/delete/<%= e._id %>">Delete</a>
                     </div>
                 </div>

@@ -17,30 +17,41 @@ app.get("/",(req,res) => {
 })
 
 app.get("/read",(req,res) => {
-    userModel.find()
+    // try{
+        userModel.find()
     .then((users)=>{ res.render("read",{users})
-})      
+        })
+    // }      
+    // catch(err){
+    //     res.send(err.message)
+    // }
 })
 
 app.post("/create",(req,res) => {
-    let {name,email,age,img} = req.body;
-    userModel.create({
-        name,
-        email,
-        age,
-        img,
-    })
-    .then( (data) =>{
-        res.redirect("/read") 
+        let {name,email,age,img} = req.body;
+        userModel.create({
+            name,
+            email,
+            age,
+            img,
+        })
+        .then( (data) =>{
+            res.redirect("/read") 
+        })
+        .catch((err)=>{
+        res.send(err.message);
     })
 })
 
-// app.get("/delete/:id",(req,res)=>{
-//     userModel.findOneAndDelete({_id:req.params.id})
-//     .then(()=>{
-//         res.redirect('/read')
-//     })
-// })
+app.get("/delete/:_id",(req,res)=>{
+    userModel.findOneAndDelete({_id:req.params._id})
+    .then((ress)=>{
+        res.redirect('/read')
+    })
+    .catch(err => {
+        res.send(err.message);
+    })
+})
 
 app.listen(3000 , (ex) => {
     console.log("Server is running ....")

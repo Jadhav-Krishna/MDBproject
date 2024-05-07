@@ -40,10 +40,11 @@ app.get("/mc",(req,res) => {
                 // console.log(token);
 })
 
-// app.get("/kkr", function (req,res) {    
-//     const data = jwt.verify(req.cookies.token, "secrate")
-//     console.log(data);
-// })
+app.get("/kkr", function (req,res) {    
+    let data = jwt.verify(req.cookies.token, "secrate")
+    console.log(data);
+    res.send("ho gya....")
+})
             
 app.get("/read",(req,res) => {
     // try{

@@ -4,8 +4,11 @@ const path = require('path');
 const user = require("./models/user");
 const userModel = require('./models/user');
 const { log } = require('console');
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-
+app.use(cookieParser());
 app.set("view engine","ejs");
 app.use(express.json( ));
 app.use(express.urlencoded({extended:true}));
@@ -16,6 +19,32 @@ app.get("/",(req,res) => {
     res.render("index")
 })
 
+app.get("/mc",(req,res) => {
+    
+    // res.cookie("index","krishna");
+    // console.log(req.cookies)
+    // bcrypt.genSalt(11, function(err, salt) {
+        //     bcrypt.hash("password", salt, function(err, hash) {
+            //         // Store hash in your password DB.
+            //         console.log(hash)
+            //     });
+            // });
+            // bcrypt.compare("password", "$2b$11$sEUnpZNsvU46ulISOS.FROZSsjHEqwFiVbIyNMRwLvL7iCJZHbvY.", function(err, result) {
+                //     // result == true
+                //     console.log(result);
+                // });
+                
+            let token = jwt.sign({ email: 'krishna@gmail.com' }, "secrate");
+            res.cookie("token",token);
+            res.send("done")
+                // console.log(token);
+})
+
+// app.get("/kkr", function (req,res) {    
+//     const data = jwt.verify(req.cookies.token, "secrate")
+//     console.log(data);
+// })
+            
 app.get("/read",(req,res) => {
     // try{
         userModel.find()

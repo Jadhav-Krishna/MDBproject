@@ -16,7 +16,12 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 
 app.get("/",(req,res) => {
-    res.render("index")
+    try{
+        res.render("index")
+    }
+    catch(err){
+        res.send(err.message);
+    }
 })
 
 app.get("/mc",(req,res) => {
@@ -47,14 +52,12 @@ app.get("/kkr", function (req,res) {
 })
             
 app.get("/read",(req,res) => {
-    // try{
-        userModel.find()
+    userModel.find()
     .then((users)=>{ res.render("read",{users})
-        })
-    // }      
-    // catch(err){
-    //     res.send(err.message)
-    // }
+    })  
+    .catch((err) => {
+        res.send(err.message);
+    })
 })
 
 app.post("/create",(req,res) => {

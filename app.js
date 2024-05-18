@@ -110,3 +110,5 @@ app.post('/update/:userid',async (req,res) => {
 app.listen(3000 , (ex) => {
     console.log("Server is running ....")
 })
+
+module.exports = app;

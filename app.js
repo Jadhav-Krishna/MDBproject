@@ -3,7 +3,6 @@ const app = express();
 const path = require('path');
 const user = require("./models/user");
 const userModel = require('./models/user');
-const { log } = require('console');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -111,4 +110,4 @@ app.post('/update/:userid',async (req,res) => {
 //     console.log("Server is running ....")
 // })
 
-module.exports = app;
+app.listen(process.env.Port || 3000);
